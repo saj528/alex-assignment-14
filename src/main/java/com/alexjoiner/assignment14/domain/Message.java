@@ -1,33 +1,26 @@
 package com.alexjoiner.assignment14.domain;
 
+
 public class Message {
 
-    private String username;
-    private String channel;
+    private User user;
     private String message;
+    private Channel channel;
     private int id;
 
-    public Message(String username, String channel, String message, int id) {
-        this.username = username;
-        this.channel = channel;
+    public Message(User user, String message, Channel channel, int id) {
+        this.user = user;
         this.message = message;
+        this.channel = channel;
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public User getUser() {
+        return user;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getChannel() {
-        return channel;
-    }
-
-    public void setChannel(String channel) {
-        this.channel = channel;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getMessage() {
@@ -38,6 +31,14 @@ public class Message {
         this.message = message;
     }
 
+    public Channel getChannel() {
+        return channel;
+    }
+
+    public void setChannel(Channel channel) {
+        this.channel = channel;
+    }
+
     public int getId() {
         return id;
     }
@@ -45,4 +46,5 @@ public class Message {
     public void setId(int id) {
         this.id = id;
     }
+
 }
