@@ -43,22 +43,26 @@ public class MessageController {
         return "redirect:/channel/" + user.getChannelId();
     }
 
-    @PostMapping("/post-message")
-    @ResponseBody
-    public String postMessage(/*@RequestBody Message message*/){
-        System.out.println("heelo post");
-        //messageService.add(message);
 
-        return "redirect:/channel/";/* + message.getUser().getChannelId();*/
-    }
+
 
     @GetMapping("/channel/{channelId}")
     public String getChannel(ModelMap modelMap){
-        System.out.println("");
+        Message message = new Message();
 
+        modelMap.put("message",message);
 
 
         return "channel";
     }
+
+    @PostMapping("/channel/{channelId}")
+    public String postMessage(Message message){
+        System.out.println(message.getUsername());
+
+
+        return "redirect:/channel/" + message.getChannelId();
+    }
+
 
 }

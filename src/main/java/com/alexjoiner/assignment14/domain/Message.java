@@ -3,24 +3,26 @@ package com.alexjoiner.assignment14.domain;
 
 public class Message {
 
-    private User user;
+    private String username;
     private String message;
-    private Channel channel;
+    private int channelId;
     private int id;
 
-    public Message(User user, String message, Channel channel, int id) {
-        this.user = user;
+    public Message(String username, String message, int channelId) {
+        this.username = username;
         this.message = message;
-        this.channel = channel;
-        this.id = id;
+        this.channelId = channelId;
     }
 
-    public User getUser() {
-        return user;
+    public Message() {
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getMessage() {
@@ -31,12 +33,12 @@ public class Message {
         this.message = message;
     }
 
-    public Channel getChannel() {
-        return channel;
+    public int getChannelId() {
+        return channelId;
     }
 
-    public void setChannel(Channel channel) {
-        this.channel = channel;
+    public void setChannelId(int channelId) {
+        this.channelId = channelId;
     }
 
     public int getId() {
