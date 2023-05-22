@@ -2,6 +2,10 @@ package com.alexjoiner.assignment14.web;
 
 import com.alexjoiner.assignment14.domain.User;
 import com.alexjoiner.assignment14.domain.Message;
+import com.alexjoiner.assignment14.service.ChannelService;
+import com.alexjoiner.assignment14.service.MessageService;
+import com.alexjoiner.assignment14.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -12,32 +16,49 @@ import java.util.ArrayList;
 @Controller
 public class MessageController {
 
-    User currentUser;
-    ArrayList<Message> messages = new ArrayList<>();
+    UserService userService;
+    MessageService messageService;
+    ChannelService channelService;
+
+    @Autowired
+    public MessageController(UserService userService, MessageService messageService, ChannelService channelService) {
+        this.userService = userService;
+        this.messageService = messageService;
+        this.channelService = channelService;
+    }
 
     @GetMapping("/welcome")
-    public String getWelcomePage(String username){
-        //System.out.println(username);
+    public String getWelcomePage(){
+
         return "welcome";
     }
 
 
     @PostMapping("/welcome")
     @ResponseBody
-    public Boolean postWelcomePage(@RequestBody User user){
-        currentUser = user;
-        System.out.println(user.getChatUsername());
-        System.out.println(user.getChatChannel());
-        return true;
+    public String postWelcomePage(@RequestBody User user){
+
+        userService.add(user);
+
+        return "redirect:/channel/" + user.getChannelId();
+    }
+
+    @PostMapping("/post-message")
+    @ResponseBody
+    public String postMessage(/*@RequestBody Message message*/){
+        System.out.println("heelo post");
+        //messageService.add(message);
+
+        return "redirect:/channel/";/* + message.getUser().getChannelId();*/
     }
 
     @GetMapping("/channel/{channelId}")
     public String getChannel(ModelMap modelMap){
+        System.out.println("");
 
 
 
-
-        return "/channel/" + currentUser.getChatChannel();
+        return "channel";
     }
 
 }

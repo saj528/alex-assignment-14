@@ -11,10 +11,14 @@ switch (channelLink.id){
         break;
 }
 
-let ChatUser = {
-    'chatUsername' : username,
-    'chatChannel' : channelNum
+let user = {
+    'username' : username,
+    'channelId' : channelNum
 }
+
+sessionStorage.clear()
+sessionStorage.setItem('user',JSON.stringify(user))
+
 
 channelLink.addEventListener('click', () => {
 
@@ -23,7 +27,7 @@ channelLink.addEventListener('click', () => {
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(ChatUser)
+        body: JSON.stringify(user)
     })
 /*        .then((response) => response.json())
         .then((data) => {

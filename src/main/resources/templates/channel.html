@@ -2,9 +2,13 @@
 <html xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Channel</title>
 </head>
 <body>
-
+<form th:action="@{/post-message}" method="post">
+    <div>
+        <input type="text">
+    </div>
+</form>
 </body>
 </html>
