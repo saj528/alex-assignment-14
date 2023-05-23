@@ -28,26 +28,27 @@ public class MessageController {
     }
 
     @GetMapping("/welcome")
-    public String getWelcomePage(){
+    public String getWelcomePage() {
 
         return "welcome";
     }
 
     @GetMapping("/channel/{channelId}")
-    public String getChannel(ModelMap modelMap){
+    public String getChannel(ModelMap modelMap, @PathVariable int channelId) {
 
-        if(!messageService.getMessages().isEmpty()){
-            modelMap.put("messages",messageService.getMessages());
+        if (!messageService.getMessages().isEmpty()) {
+            modelMap.put("messages", messageService.getMessages());
         }
 
         return "channel";
+
     }
 
     @PostMapping("/add-message")
     @ResponseBody
-    public String postMessage(@RequestBody Message message){
+    public Boolean postMessage(@RequestBody Message message) {
         messageService.add(message);
-        return "redirect:channel/" + message.getChannelId();
+        return true;
     }
 
 }
