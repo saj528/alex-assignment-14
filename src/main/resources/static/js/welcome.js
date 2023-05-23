@@ -20,6 +20,8 @@ sessionStorage.clear()
 sessionStorage.setItem('user',JSON.stringify(user))
 
 
+
+/*
 channelLink.addEventListener('click', () => {
 
     fetch(`http://localhost:8080/welcome`, {
@@ -29,8 +31,8 @@ channelLink.addEventListener('click', () => {
         },
         body: JSON.stringify(user)
     })
-/*        .then((response) => response.json())
+       .then((response) => response.json())
         .then((data) => {
             console.log(data)
-        })*/
-})
+        })
+})*/
