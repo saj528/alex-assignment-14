@@ -1,20 +1,51 @@
 let messageBox = document.getElementById("messageBox")
 let messageForm = document.getElementById("messageForm")
+let messageContainer = document.getElementById("messageContainer")
 let user = JSON.parse(sessionStorage.getItem('user'))
+let channelId = getCurrentChannelId()
 
-messageBox.addEventListener('click', () => {
+console.log(channelId)
 
-    if (sessionStorage.getItem("message") != null) {
-        console.log(sessionStorage.getItem("message").toString())
-    }
-})
+setInterval(getMessages, 500)
+
+
+
+
+function getMessages() {
+
+    fetch(`http://localhost:8080/get-messages/${channelId}`)
+        .then(response => response.json())
+        .then(data => {
+            messageContainer.innerHTML = ''
+            data.forEach(message => {
+                messageContainer.innerHTML += `<div>
+			  <span>${message.username}: ${message.message}</span>
+			</div>`
+            })
+        })
+}
+
+function getCurrentChannelId(){
+    const url = window.location.href
+
+    const pattern = /\/channel\/([^/?]+)/
+
+
+    const matches = url.match(pattern)
+
+
+    const tempChannelId = matches && matches[1]
+
+    return tempChannelId
+}
+
 
 messageForm.addEventListener('submit', () => {
 
     let message = {
         'username': user.username,
         'message': messageBox.value,
-        'channelId': user.channelId
+        'channelId': channelId
 
     }
 
@@ -25,5 +56,10 @@ messageForm.addEventListener('submit', () => {
         },
         body: JSON.stringify(message)
     })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data)
+        })
+
 
 })

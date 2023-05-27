@@ -1,6 +1,7 @@
 package com.alexjoiner.assignment14.service;
 
 import com.alexjoiner.assignment14.domain.User;
+import com.alexjoiner.assignment14.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -8,17 +9,17 @@ import java.util.ArrayList;
 @Service
 public class UserService {
 
-    ArrayList<User> users = new ArrayList<>();
+    UserRepository userRepository;
 
-    public ArrayList<User> getUsers() {
-        return users;
+    public UserService() {
+        this.userRepository = new UserRepository();
     }
 
-    public void setUsers(ArrayList<User> users) {
-        this.users = users;
+    public ArrayList<User> getUsers() {
+        return userRepository.getUsers();
     }
 
     public void add(User user) {
-        users.add(user);
+        userRepository.add(user);
     }
 }

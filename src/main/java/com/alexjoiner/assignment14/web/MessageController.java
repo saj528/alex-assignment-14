@@ -11,6 +11,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 @Controller
@@ -36,8 +37,8 @@ public class MessageController {
     @GetMapping("/channel/{channelId}")
     public String getChannel(ModelMap modelMap, @PathVariable int channelId) {
 
-        if (!messageService.getMessages().isEmpty()) {
-            modelMap.put("messages", messageService.getMessages());
+        if (!messageService.getChannelMessages(channelId).isEmpty()) {
+            modelMap.put("messages", messageService.getChannelMessages(channelId));
         }
 
         return "channel";
@@ -49,6 +50,15 @@ public class MessageController {
     public Boolean postMessage(@RequestBody Message message) {
         messageService.add(message);
         return true;
+    }
+
+    @GetMapping("/get-messages/{channelId}")
+    @ResponseBody
+    public List<Message> postMessage(@PathVariable int channelId) {
+
+
+        return messageService.getChannelMessages(channelId);
+
     }
 
 }
