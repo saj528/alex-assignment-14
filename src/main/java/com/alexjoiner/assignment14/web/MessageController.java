@@ -1,5 +1,6 @@
 package com.alexjoiner.assignment14.web;
 
+import com.alexjoiner.assignment14.domain.ChatChannel;
 import com.alexjoiner.assignment14.domain.User;
 import com.alexjoiner.assignment14.domain.Message;
 import com.alexjoiner.assignment14.service.ChannelService;
@@ -10,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -48,14 +48,14 @@ public class MessageController {
     @PostMapping("/add-message")
     @ResponseBody
     public Boolean postMessage(@RequestBody Message message) {
+
         messageService.add(message);
         return true;
     }
 
     @GetMapping("/get-messages/{channelId}")
     @ResponseBody
-    public List<Message> postMessage(@PathVariable int channelId) {
-
+    public List<Message> getMessages(@PathVariable int channelId) {
 
         return messageService.getChannelMessages(channelId);
 

@@ -2,13 +2,13 @@ package com.alexjoiner.assignment14.repository;
 
 import com.alexjoiner.assignment14.domain.User;
 
-import java.util.ArrayList;
+import java.util.LinkedHashSet;
 
 public class UserRepository {
 
-    ArrayList<User> users = new ArrayList<>();
+    LinkedHashSet<User> users = new LinkedHashSet<>();
 
-    public ArrayList<User> getUsers() {
+    public LinkedHashSet<User> getUsers() {
         return users;
     }
 

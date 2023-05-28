@@ -13,26 +13,23 @@ switch (channelLink.id){
 
 let user = {
     'username' : username,
-    'channelId' : channelNum
+    'channelId': channelNum
 }
+
+fetch(`http://localhost:8080/add-user`, {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify(user)
+})
+    .then((response) => response.json())
+    .then((data) => {
+        console.log(data)
+    })
+
 
 sessionStorage.clear()
 sessionStorage.setItem('user',JSON.stringify(user))
 
 
-
-/*
-channelLink.addEventListener('click', () => {
-
-    fetch(`http://localhost:8080/welcome`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(user)
-    })
-       .then((response) => response.json())
-        .then((data) => {
-            console.log(data)
-        })
-})*/

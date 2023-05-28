@@ -1,14 +1,17 @@
 package com.alexjoiner.assignment14.domain;
 
+import com.alexjoiner.assignment14.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+
+
 public class User {
 
     private String username;
+    private String channelId;
     private int id;
-    private int channelId;
 
-    public User(String username, int id, int channelId) {
+    public User(String username, String channelId) {
         this.username = username;
-        this.id = id;
         this.channelId = channelId;
     }
 
@@ -28,13 +31,12 @@ public class User {
         this.id = id;
     }
 
-    public int getChannelId() {
+    public String getChannelId() {
         return channelId;
     }
 
-    public void setChannelId(int channelId) {
+    public void setChannelId(String channelId) {
         this.channelId = channelId;
     }
-
 }
 

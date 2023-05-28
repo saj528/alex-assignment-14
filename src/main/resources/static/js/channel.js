@@ -5,8 +5,10 @@ let user = JSON.parse(sessionStorage.getItem('user'))
 let channelId = getCurrentChannelId()
 
 console.log(channelId)
+if(!channelId === null){
+    setInterval(getMessages, 500)
+}
 
-setInterval(getMessages, 500)
 
 
 
@@ -28,7 +30,7 @@ function getMessages() {
 function getCurrentChannelId(){
     const url = window.location.href
 
-    const pattern = /\/channel\/([^/?]+)/
+    const pattern = /\/chatChannel\/([^/?]+)/
 
 
     const matches = url.match(pattern)
@@ -36,6 +38,7 @@ function getCurrentChannelId(){
 
     const tempChannelId = matches && matches[1]
 
+    console.log(tempChannelId)
     return tempChannelId
 }
 
@@ -48,6 +51,7 @@ messageForm.addEventListener('submit', () => {
         'channelId': channelId
 
     }
+
 
     fetch(`http://localhost:8080/add-message`, {
         method: "POST",

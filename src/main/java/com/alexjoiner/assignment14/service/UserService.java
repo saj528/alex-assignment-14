@@ -4,7 +4,7 @@ import com.alexjoiner.assignment14.domain.User;
 import com.alexjoiner.assignment14.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.util.LinkedHashSet;
 
 @Service
 public class UserService {
@@ -15,7 +15,7 @@ public class UserService {
         this.userRepository = new UserRepository();
     }
 
-    public ArrayList<User> getUsers() {
+    public LinkedHashSet<User> getUsers() {
         return userRepository.getUsers();
     }
 
