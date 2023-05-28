@@ -1,8 +1,7 @@
 package com.alexjoiner.assignment14.web;
 
-import com.alexjoiner.assignment14.domain.User;
 import com.alexjoiner.assignment14.domain.Message;
-import com.alexjoiner.assignment14.service.ChannelService;
+import com.alexjoiner.assignment14.domain.User;
 import com.alexjoiner.assignment14.service.MessageService;
 import com.alexjoiner.assignment14.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -19,13 +17,12 @@ public class MessageController {
 
     UserService userService;
     MessageService messageService;
-    ChannelService channelService;
+
 
     @Autowired
-    public MessageController(UserService userService, MessageService messageService, ChannelService channelService) {
+    public MessageController(UserService userService, MessageService messageService) {
         this.userService = userService;
         this.messageService = messageService;
-        this.channelService = channelService;
     }
 
     @GetMapping("/welcome")
@@ -52,10 +49,17 @@ public class MessageController {
         return true;
     }
 
+    @PostMapping("/add-user")
+    @ResponseBody
+    public Boolean postUser(@RequestBody User user) {
+        user.setId(userService.getUsers().size() + 1);
+        userService.add(user);
+        return true;
+    }
+
     @GetMapping("/get-messages/{channelId}")
     @ResponseBody
     public List<Message> postMessage(@PathVariable int channelId) {
-
 
         return messageService.getChannelMessages(channelId);
 

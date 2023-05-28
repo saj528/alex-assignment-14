@@ -3,13 +3,13 @@ package com.alexjoiner.assignment14.domain;
 public class User {
 
     private String username;
-    private int id;
     private int channelId;
+    private int id;
 
-    public User(String username, int id, int channelId) {
+    public User(String username, int channelId, int id) {
         this.username = username;
-        this.id = id;
         this.channelId = channelId;
+        this.id = id;
     }
 
     public String getUsername() {
