@@ -52,8 +52,14 @@ public class MessageController {
     @PostMapping("/add-user")
     @ResponseBody
     public Boolean postUser(@RequestBody User user) {
+
+        for(User tempUser : userService.getUsers()){
+            if(tempUser.getUsername().equals(user.getUsername())){
+                return true;
+            }
+        }
+
         user.setId(userService.getUsers().size() + 1);
-        System.out.println(user.getUsername());
         userService.add(user);
         return true;
     }
